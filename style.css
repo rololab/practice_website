@@ -36,11 +36,11 @@ body {
 
 /* Gate */
 .gate {
-    position: fixed;
-    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 100vh;
+    padding: 32px 18px;
     background: linear-gradient(180deg, rgba(5, 6, 8, 0.92), rgba(5, 6, 8, 0.96));
     backdrop-filter: blur(4px);
 }
@@ -121,6 +121,7 @@ body {
 /* Meme */
 .meme {
     width: min(880px, 92vw);
+    margin: 48px auto;
 }
 
 .meme__frame {
@@ -132,8 +133,17 @@ body {
     text-align: center;
 }
 
+.meme__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
 .meme__title {
-    margin: 0 0 6px;
+    margin: 0;
     text-transform: uppercase;
     letter-spacing: 0.08em;
 }
