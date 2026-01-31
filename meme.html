@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed Me</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="meme">
+        <div class="meme__frame">
+            <div class="meme__top">
+                <div>
+                    <p class="gate__eyebrow">Unlocked</p>
+                    <h2 class="meme__title">Good Food Please!</h2>
+                    <p class="meme__subtitle">*cough cough*</p>
+                </div>
+                <button class="gate__button" id="sign-out" type="button">Sign out</button>
+            </div>
+            <img class="meme__image" src="assets/images/cat_hungry.jpeg" alt="hungry cat">
+        </div>
+    </main>
+    <script>
+        (() => {
+            if (sessionStorage.getItem('memeAuth') !== 'ok') {
+                window.location.replace('index.html');
+                return;
+            }
+            document.getElementById('sign-out').addEventListener('click', () => {
+                sessionStorage.removeItem('memeAuth');
+                window.location.href = 'index.html';
+            });
+        })();
+    </script>
+</body>
+</html>
