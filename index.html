@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="gate" id="auth">
+    <main class="gate">
         <div class="gate__card">
             <p class="gate__eyebrow">Private access</p>
             <h1 class="gate__title">What is the password?</h1>
@@ -18,13 +18,6 @@
             </form>
             <p class="gate__notice" id="message"></p>
         </div>
-    </div>
-    <main class="meme is-hidden" id="protected">
-        <div class="meme__frame">
-            <h2 class="meme__title">Good Food Please!</h2>
-            <p class="meme__subtitle">*cough cough*</p>
-            <img class="meme__image" src="assets/images/cat_hungry.jpeg" alt="hungry cat">
-        </div>
     </main>
     <script>
         (() => {
@@ -32,12 +25,10 @@
             const form = document.getElementById('auth-form');
             const input = document.getElementById('pw');
             const msg = document.getElementById('message');
-            const gate = document.getElementById('auth');
-            const content = document.getElementById('protected');
 
             const success = () => {
-                gate.classList.add('is-hidden');
-                content.classList.remove('is-hidden');
+                sessionStorage.setItem('memeAuth', 'ok');
+                window.location.href = 'meme.html';
             };
 
             form.addEventListener('submit', (e) => {
