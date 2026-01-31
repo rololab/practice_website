@@ -9,12 +9,16 @@
 </head>
 <body>
     <main class="gate">
-        <div class="gate__card">
-            <p class="gate__eyebrow">Private access</p>
-            <h1 class="gate__title">What is the password?</h1>
+        <div class="gate__card animate-pop">
+            <p class="gate__eyebrow">Secure Entry</p>
+            <h1 class="gate__title">Feed the Cat</h1>
+            <p class="gate__description">Enter the secret password to satisfy the feline.</p>
             <form class="gate__form" id="auth-form">
-                <input class="gate__input" id="pw" type="password" autocomplete="off" aria-label="Password" required>
-                <button class="gate__button" type="submit">Enter</button>
+                <div class="input-group">
+                    <input class="gate__input" id="pw" type="password" placeholder="The secret word..." autocomplete="off" aria-label="Password" required>
+                    <div class="input-focus-border"></div>
+                </div>
+                <button class="gate__button" type="submit">Unlock Access</button>
             </form>
             <p class="gate__notice" id="message"></p>
         </div>

@@ -9,14 +9,21 @@
 </head>
 <body>
     <main class="meme">
-        <div class="meme__frame">
+        <div class="meme__frame animate-slide-up">
             <div class="meme__top">
                 <div style="text-align: center; width: 100%;">
+                    <p class="gate__eyebrow status-unlocked">Access Granted</p>
                     <h2 class="meme__title">Good Food Please!</h2>
-                    <p class="meme__subtitle">*cough cough*</p>
+                    <p class="meme__subtitle">*gentle purring sounds*</p>
                 </div>
             </div>
-            <img class="meme__image" src="assets/images/cat_hungry.jpeg" alt="hungry cat">
+            <div class="image-container">
+                <img class="meme__image" src="assets/images/cat_hungry.jpeg" alt="hungry cat">
+                <div class="image-overlay"></div>
+            </div>
+            <div class="meme__footer">
+                <button class="gate__button secondary" id="sign-out" type="button">Lock Door</button>
+            </div>
         </div>
     </main>
     <script>

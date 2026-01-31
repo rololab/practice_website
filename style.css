@@ -1,14 +1,14 @@
 /* Global layout */
 :root {
-    --bg: #050608;
-    --panel: rgba(20, 22, 26, 0.9);
+    --bg: #0a0c10;
+    --panel: rgba(20, 22, 26, 0.7);
     --accent: #f4e28a;
     --accent-2: #9ad5ff;
     --text: #f7f7f7;
     --muted: #9ea5b3;
-    --border: rgba(255, 255, 255, 0.25);
-    --shadow: 0 18px 65px rgba(0, 0, 0, 0.55);
-    --radius: 14px;
+    --border: rgba(255, 255, 255, 0.12);
+    --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    --radius: 20px;
     font-family: 'Libre Baskerville', serif;
 }
 
@@ -24,138 +24,200 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: radial-gradient(circle at 20% 20%, rgba(154, 213, 255, 0.1), transparent 25%),
-                radial-gradient(circle at 80% 30%, rgba(244, 226, 138, 0.12), transparent 30%),
-                linear-gradient(135deg, #050608, #0b0d12 55%, #050608);
+    background: radial-gradient(circle at 10% 10%, rgba(154, 213, 255, 0.05), transparent 35%),
+                radial-gradient(circle at 90% 90%, rgba(244, 226, 138, 0.08), transparent 35%),
+                #0a0c10;
     color: var(--text);
+    overflow-x: hidden;
 }
 
 .is-hidden {
     display: none !important;
 }
 
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.95); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-pop {
+    animation: popIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-up {
+    animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 /* Gate */
 .gate {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    padding: 32px 18px;
-    background: linear-gradient(180deg, rgba(5, 6, 8, 0.92), rgba(5, 6, 8, 0.96));
-    backdrop-filter: blur(4px);
+    padding: 20px;
 }
 
 .gate__card {
-    width: min(420px, 90vw);
-    padding: 30px 28px;
+    width: min(440px, 100%);
+    padding: 48px 40px;
     background: var(--panel);
+    backdrop-filter: blur(20px);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
+    text-align: center;
 }
 
 .gate__eyebrow {
     margin: 0;
     text-transform: uppercase;
-    letter-spacing: 0.3em;
-    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    font-size: 0.65rem;
     color: var(--accent);
+    opacity: 0.8;
 }
 
 .gate__title {
-    margin: 10px 0 4px;
-    font-size: 1.6rem;
-    letter-spacing: 0.04em;
+    margin: 16px 0 8px;
+    font-size: 2.2rem;
+    letter-spacing: -0.02em;
+}
+
+.gate__description {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 32px;
 }
 
 .gate__form {
     display: flex;
-    gap: 12px;
-    margin-top: 18px;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    position: relative;
+    width: 100%;
 }
 
 .gate__input {
-    flex: 1;
-    padding: 12px 14px;
-    border-radius: 10px;
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
     border: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.03);
     color: var(--text);
     font-size: 1rem;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.3s ease;
+    text-align: center;
 }
 
 .gate__input:focus {
     outline: none;
+    background: rgba(255, 255, 255, 0.06);
     border-color: var(--accent-2);
-    box-shadow: 0 0 0 3px rgba(154, 213, 255, 0.25);
+    box-shadow: 0 0 0 4px rgba(154, 213, 255, 0.15);
 }
 
 .gate__button {
-    padding: 12px 16px;
-    border-radius: 10px;
-    border: 1px solid var(--accent);
+    padding: 16px;
+    border-radius: 12px;
+    border: none;
     background: var(--accent);
-    color: #171717;
+    color: #0a0c10;
     font-weight: 700;
     cursor: pointer;
-    letter-spacing: 0.04em;
-    transition: transform 0.1s ease, box-shadow 0.2s ease, background 0.2s ease;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
 }
 
 .gate__button:hover {
-    box-shadow: 0 6px 24px rgba(244, 226, 138, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(244, 226, 138, 0.3);
+    background: #fff0a5;
 }
 
 .gate__button:active {
-    transform: translateY(1px);
+    transform: translateY(0);
+}
+
+.gate__button.secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.8rem;
+    padding: 10px 20px;
+    margin-top: 24px;
+}
+
+.gate__button.secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    border-color: var(--text);
+    box-shadow: none;
 }
 
 .gate__notice {
     min-height: 1.2em;
-    margin: 12px 0 0;
-    color: #ff7b7b;
-    letter-spacing: 0.02em;
+    margin-top: 16px;
+    color: #ff6b6b;
+    font-size: 0.85rem;
 }
 
-/* Meme */
+/* Meme Page */
 .meme {
-    width: min(880px, 92vw);
-    margin: 48px auto;
+    width: 100%;
+    max-width: 900px;
+    padding: 40px 20px;
 }
 
 .meme__frame {
-    padding: 28px;
-    border-radius: var(--radius);
-    background: rgba(255, 255, 255, 0.04);
+    background: var(--panel);
+    backdrop-filter: blur(20px);
     border: 1px solid var(--border);
+    border-radius: var(--radius);
     box-shadow: var(--shadow);
-    text-align: center;
+    padding: 40px;
+    overflow: hidden;
 }
 
-.meme__top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 18px;
-    flex-wrap: wrap;
-    margin-bottom: 16px;
-}
-
-.meme__title {
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+.status-unlocked {
+    color: #8affc1;
+    margin-bottom: 8px;
 }
 
 .meme__subtitle {
-    margin: 0 0 16px;
+    font-style: italic;
     color: var(--muted);
+    margin-top: 8px;
+}
+
+.image-container {
+    position: relative;
+    margin: 32px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
 }
 
 .meme__image {
     width: 100%;
-    border-radius: 10px;
-    border: 4px solid rgba(255, 255, 255, 0.65);
     display: block;
+    transition: transform 0.5s ease;
+}
+
+.image-container:hover .meme__image {
+    transform: scale(1.02);
+}
+
+.meme__footer {
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
 }
