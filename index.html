@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed Me</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="gate" id="auth">
+        <div class="gate__card">
+            <p class="gate__eyebrow">Private access</p>
+            <h1 class="gate__title">What is the password?</h1>
+            <form class="gate__form" id="auth-form">
+                <input class="gate__input" id="pw" type="password" autocomplete="off" aria-label="Password" required>
+                <button class="gate__button" type="submit">Enter</button>
+            </form>
+            <p class="gate__notice" id="message"></p>
+        </div>
+    </div>
+    <main class="meme is-hidden" id="protected">
+        <div class="meme__frame">
+            <h2 class="meme__title">Good Food Please!</h2>
+            <p class="meme__subtitle">*cough cough*</p>
+            <img class="meme__image" src="assets/images/cat_hungry.jpeg" alt="hungry cat">
+        </div>
+    </main>
+    <script>
+        (() => {
+            const secret = atob('cGl6emE='); // "pizza" lightly obfuscated
+            const form = document.getElementById('auth-form');
+            const input = document.getElementById('pw');
+            const msg = document.getElementById('message');
+            const gate = document.getElementById('auth');
+            const content = document.getElementById('protected');
+
+            const success = () => {
+                gate.classList.add('is-hidden');
+                content.classList.remove('is-hidden');
+            };
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const attempt = input.value.trim().toLowerCase();
+                if (attempt === secret) {
+                    success();
+                } else {
+                    msg.textContent = 'Access denied, try again.';
+                    input.value = '';
+                    input.focus();
+                }
+            });
+
+            input.focus();
+        })();
+    </script>
+</body>
+</html>
